@@ -29,7 +29,7 @@ public class BookController {
         return bookInventory.allBooks(onlyHasStock.orElse(false));
     }
 
-    @GetMapping("/v1/book/{id}")
+    @GetMapping("/v1/books/{id}")
     public Book book(@PathVariable String id) {
         return bookInventory.findBook(id);
     }

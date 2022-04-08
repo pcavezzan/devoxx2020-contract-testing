@@ -12,6 +12,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRunner;
+import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
 import org.springframework.cloud.stream.test.binder.MessageCollector;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.Message;
@@ -27,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-//@AutoConfigureStubRunner - TO_COMPLETE
+@AutoConfigureStubRunner(repositoryRoot="https://foo.bar", ids = "com.devoxx:inventory:+:stubs:8080", stubsMode = StubRunnerProperties.StubsMode.LOCAL)
 public class CheckoutApplicationTests {
 
     @Autowired
@@ -47,7 +49,6 @@ public class CheckoutApplicationTests {
 
     @SuppressWarnings("unchecked")
     @Test
-    @Disabled
     void should_checkout_order() throws Exception {
         //when
         Order order = new Order("d4d37e73-77a0-4616-8bd2-5ed983d45d14", 2, "yannick");
@@ -72,7 +73,6 @@ public class CheckoutApplicationTests {
         //when
         Book book = inventory.retrieveBook("d4d37e73-77a0-4616-8bd2-5ed983d45d14");
         assertThat(book.getStock()).isEqualTo(100);
-
     }
 
 }

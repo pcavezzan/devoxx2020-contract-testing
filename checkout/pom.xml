@@ -91,7 +91,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <testFramework>JUNIT5</testFramework>
-                    <!-- TO COMPLETE -->
+					<baseClassForTests>com.devoxx.checkout.contracts.ContractsBase</baseClassForTests>
                 </configuration>
             </plugin>
 			<plugin>

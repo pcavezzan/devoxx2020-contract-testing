@@ -31,8 +31,8 @@ public class ContractsBase {
     @Autowired
     private WebApplicationContext context;
 
-    //@Autowired
-    //private MessageVerifier verifier;
+    @Autowired
+    private MessageVerifier<Order> verifier;
 
     @Autowired
     private Delivery delivery;
@@ -43,7 +43,7 @@ public class ContractsBase {
     }
 
     public void sendOrder() {
-        // TO COMPLETE
+        verifier.send(new Order("d4d37e73-77a0-4616-8bd2-5ed983d45d14", 2, "yannick"), "delivery");
     }
 
 
